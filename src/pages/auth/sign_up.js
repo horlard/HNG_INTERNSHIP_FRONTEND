@@ -88,9 +88,7 @@ export default class Signup extends Component {
 
     </form>
 
-    <div className="ui message">
-      New to us? <a href="#">Sign Up</a>
-    </div>
+    
   </div>
 </div>
 
