@@ -8,7 +8,12 @@ export default class Signup extends Component {
       LastName: '',
       email: '',
       password: '',
-      confirmPass: ''
+      confirmPass: '',
+      FirstnameErr:'',
+      LastnameErr:'',
+      emailErr:'',
+      PasswordnameErr:'',
+      confirmpassErr:''
     }
     onEmailInput = e => {
         this.setState({ email: e.target.value })
@@ -25,18 +30,17 @@ export default class Signup extends Component {
     onPasswordConfirm = e => {
         this.setState({ confirmPass: e.target.value })
     }
-    confirmPassword=()=> {
-            return (
-                <div>
-                    Password and Confirm-password field has to be the same
-                </div>
-            )
-
+    
+    onFormSubmit =(e)=> {
+        e.preventDefault()
+        if(!this.state.FirstName || !this.state.LastName || !this.state.email || !this.state.email || !this.state.password || !this.state.confirmPass) {
+            return this.setState({FirstnameErr:'Please fill in the required fields '})
+        }
         
+        return console.log('hello')
     }
     
     render() {
-        console.log(this.state)
         return (
             <div>
                 <div className="ui middle aligned center aligned grid" style={{transform:'translateY(50%)'}}>
@@ -46,52 +50,50 @@ export default class Signup extends Component {
         Sign-up
       </div>
     </h2>
-    <form className="ui large form">
+    <form className="ui large form error">
       <div className="ui stacked segment">
         <div className="field">
           <div className="ui left icon input">
             <i className="user icon"></i>
-            <input type="text" name="text" placeholder="First Name" onChange={this.onFirstName} required/>
+            <input type="text" name="text" placeholder="First Name" onChange={this.onFirstName} />
           </div>
         </div>
         <div className="field">
           <div className="ui left icon input">
             <i className="user icon"></i>
-            <input type="text" name="text" placeholder="Last Name" onChange={this.onLastName} required/>
+            <input type="text" name="text" placeholder="Last Name" onChange={this.onLastName} />
           </div>
         </div>
         <div className="field">
           <div className="ui left icon input">
             <i className="mail icon"></i>
-            <input type="email" name="text" placeholder="E-mail Address" onChange={this.onEmailInput} required/>
+            <input type="email" name="text" placeholder="E-mail Address" onChange={this.onEmailInput} />
           </div>
         </div>
         <div className="field">
           <div className="ui left icon input">
             <i className="lock icon"></i>
-            <input type="password" name="password" placeholder="Password" onChange={this.onPasswordInput} required/>
+            <input type="password" name="password" placeholder="Password" onChange={this.onPasswordInput} />
           </div>
         </div>
         <div className="field">
           <div className="ui left icon input">
             <i className="lock icon"></i>
-            <input type="password" name="password" placeholder="Confirm Password" onChange={this.onPasswordConfirm} required/>
+            <input type="password" name="password" placeholder="Confirm Password" onChange={this.onPasswordConfirm} />
           </div>
         </div>
-        <div className="ui fluid large teal submit button">Sign Up</div>
+        <div className="ui fluid large teal submit button" onClick={this.onFormSubmit}>Sign Up</div>
       </div>
+      <div className="ui error message">{this.state.FirstnameErr}</div>
 
-      <div className="ui error message"></div>
+      
 
     </form>
 
     
   </div>
 </div>
-
-
-
-            </div>
+</div>
             
         )
     }
