@@ -7,8 +7,19 @@ class Login extends Component {
   respass: false,
   emailSent: false,
   verificationSuccess: false,
-  loading: false
+  loading: false,
+  email:'',
+  password:''
  };
+
+onEmailInput=e=> {
+    this.setState({email:e.target.value})
+
+}
+onPasswordInput=e=> {
+    this.setState({password:e.target.value})
+
+}
  render() {
   return (
    <form className={classes.form}>
@@ -18,11 +29,11 @@ class Login extends Component {
       <div className={classes.inputcontainer}>
        <div className={classes.input}>
         <span>Email</span>
-        <input placeholder="Aa@domain.com" />
+        <input placeholder="Aa@domain.com" onChange={this.onEmailInput}/>
        </div>
        <div className={classes.input}>
         <span>Password</span>
-        <input placeholder="Password" type="password" />
+        <input placeholder="Password" type="password" onChange={this.onPasswordInput}/>
        </div>
        <button
         type="submit"
