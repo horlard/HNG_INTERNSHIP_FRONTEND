@@ -81,7 +81,7 @@ export default class Signup extends Component {
             <input type="password" name="password" placeholder="Confirm Password" onChange={this.onPasswordConfirm} required/>
           </div>
         </div>
-        <div className="ui fluid large teal submit button">Login</div>
+        <div className="ui fluid large teal submit button">Sign Up</div>
       </div>
 
       <div className="ui error message"></div>
