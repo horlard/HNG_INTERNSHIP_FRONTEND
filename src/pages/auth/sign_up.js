@@ -8,7 +8,7 @@ export default class Signup extends Component {
         email: '',
         password: '',
         password_confirmation: '',
-        passErr: false
+        passErr: null
     }
 
     inputHandler = e => {
