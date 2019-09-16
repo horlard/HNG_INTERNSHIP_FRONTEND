@@ -38,9 +38,6 @@ export default class Signup extends Component {
     render() {
         console.log(this.state)
         return (
-
-
-
             <div>
                 <div className="ui middle aligned center aligned grid" style={{transform:'translateY(50%)'}}>
   <div className="column">
