@@ -10,7 +10,8 @@ class Login extends Component {
   verificationSuccess: false,
   loading: false,
   email:'',
-  password:''
+  password:'',
+  Err:''
  };
 
 onEmailInput=e=> {
@@ -21,11 +22,13 @@ onPasswordInput=e=> {
     this.setState({password:e.target.value})
 
 }
+onFormSubmit =e=> {
+     console.log('hello')
+}
 
 
  render() {
-     console.log(this.state.email);
-     console.log(this.state.password)
+     
   return (
    <div style={{transform:'translateY(100%)'}} className='contain '>
        <div className="ui middle aligned center aligned grid" >
@@ -35,7 +38,7 @@ onPasswordInput=e=> {
         Login to your Account
       </div>
     </h2>
-    <form className="ui large form">
+    <form className="ui large form error" >
       <div className="ui stacked segment">
         <div className="field">
           <div className="ui left icon input">
@@ -53,7 +56,7 @@ onPasswordInput=e=> {
         <div className="ui fluid large teal submit button">Login</div>
       </div>
 
-      <div className="ui error message"></div>
+      <div className="ui error message" type='submit' onClick={this.onFormSubmit}>{this.state.Err}</div>
 
     </form>
     <div className="ui message">
