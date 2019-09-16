@@ -46,7 +46,7 @@ export default class Signup extends Component {
   <div className="column">
     <h2 className="ui teal image header">
       <div className="content">
-        Log-in to your account
+        Sign-up
       </div>
     </h2>
     <form className="ui large form">
