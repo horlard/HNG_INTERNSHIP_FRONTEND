@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter,Link } from 'react-router-dom';
 import classes from './login.module.css';
+import './sign.css';
 
 class Login extends Component {
  state = {
@@ -23,29 +24,19 @@ onPasswordInput=e=> {
 
 
  render() {
+     console.log(this.state.email);
+     console.log(this.state.password)
   return (
-   <div>
-       <div className="ui middle aligned center aligned grid" style={{transform:'translateY(50%)'}}>
+   <div style={{transform:'translateY(100%)'}} className='contain'>
+       <div className="ui middle aligned center aligned grid" >
   <div className="column">
     <h2 className="ui teal image header">
       <div className="content">
-        Sign-up
+        Login to your Account
       </div>
     </h2>
     <form className="ui large form">
       <div className="ui stacked segment">
-        <div className="field">
-          <div className="ui left icon input">
-            <i className="user icon"></i>
-            <input type="text" name="text" placeholder="First Name" onChange={this.onFirstName} required/>
-          </div>
-        </div>
-        <div className="field">
-          <div className="ui left icon input">
-            <i className="user icon"></i>
-            <input type="text" name="text" placeholder="Last Name" onChange={this.onLastName} required/>
-          </div>
-        </div>
         <div className="field">
           <div className="ui left icon input">
             <i className="mail icon"></i>
@@ -58,18 +49,16 @@ onPasswordInput=e=> {
             <input type="password" name="password" placeholder="Password" onChange={this.onPasswordInput} required/>
           </div>
         </div>
-        <div className="field">
-          <div className="ui left icon input">
-            <i className="lock icon"></i>
-            <input type="password" name="password" placeholder="Confirm Password" onChange={this.onPasswordConfirm} required/>
-          </div>
-        </div>
-        <div className="ui fluid large teal submit button">Sign Up</div>
+        
+        <div className="ui fluid large teal submit button">Login</div>
       </div>
 
       <div className="ui error message"></div>
 
     </form>
+    <div className="ui message">
+      New to us? <Link to='/signup'>Sign Up</Link>
+    </div>
 
     
   </div>
