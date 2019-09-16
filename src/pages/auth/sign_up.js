@@ -45,7 +45,7 @@ export default class Signup extends Component {
                             <div className="content">Sign-up</div>
                         </h2>
                         <form
-                            className="ui large form"
+                            className="ui large form error"
                             onSubmit={this.submitHandler}
                         >
                             <div className="ui stacked segment">
@@ -105,13 +105,10 @@ export default class Signup extends Component {
                                     <button className="ui fluid large teal submit button">
                                         Sign Up
                                     </button>
-                                    <p className="passError">
-                                        {passErrHandler}
-                                    </p>
                                 </div>
                             </div>
 
-                            <div className="ui error message"></div>
+                            <div className="ui error message">{passErrHandler}</div>
                         </form>
                     </div>
                 </div>
