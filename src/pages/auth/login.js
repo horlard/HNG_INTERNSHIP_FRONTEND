@@ -27,7 +27,7 @@ onPasswordInput=e=> {
      console.log(this.state.email);
      console.log(this.state.password)
   return (
-   <div style={{transform:'translateY(100%)'}} className='contain'>
+   <div style={{transform:'translateY(100%)'}} className='contain '>
        <div className="ui middle aligned center aligned grid" >
   <div className="column">
     <h2 className="ui teal image header">
