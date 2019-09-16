@@ -1,94 +1,121 @@
 import React, { Component } from 'react'
-import classes from './signup.module.css'
+import './sign.css'
 
 export default class Signup extends Component {
     state = {
         authStart: false,
-      FirstName: '',
-      LastName: '',
-      email: '',
-      password: '',
-      confirmPass: ''
+        name: '',
+        email: '',
+        password: '',
+        password_confirmation: '',
+        passErr: false
     }
-    onEmailInput = e => {
-        this.setState({ email: e.target.value })
+
+    inputHandler = e => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
-    onPasswordInput = e => {
-        this.setState({ password: e.target.value })
+
+    submitHandler = e => {
+        e.preventDefault()
+        const { password, password_confirmation } = this.state
+        if (password !== password_confirmation) {
+            return this.setState({
+                passErr: true
+            })
+        }
+        this.setState({
+            passErr: false
+        })
     }
-    onFirstName = e => {
-        this.setState({ FirstName: e.target.value })
-    }
-    onLastName = e => {
-        this.setState({ LastName: e.target.value })
-    }
-    onPasswordConfirm = e => {
-        this.setState({ confirmPass: e.target.value })
-    }
-    
     render() {
+        let passErrHandler = ''
+        if (this.state.passErr) {
+            passErrHandler = 'Passwords do not match!'
+        }
         return (
-            <form className={classes.form}>
-                <div className={classes.inputcontainer}>
-                    <div className={classes.input}>
-                        <span>First Name</span>
-                        <input required placeholder="John" minLength="4" onChange = {this.onFirstName}/>
-                    </div>
-                    <div className={classes.input}>
-                        <span>Last Name</span>
-                        <input required placeholder="Doe" minLength="4" onChange = {this.onLastName} />
-                    </div>
-                    <div className={classes.input}>
-                        <span>Email</span>
-                        <input
-                            required
-                            placeholder="Aa@domain.com"
-                            type="email"
-                        onChange = {this.onEmailInput}/>
-                    </div>
-                    <div className={classes.input}>
-                        <span>Password</span>
-                        <input
-                            required
-                            placeholder="password"
-                            type="password"
-                            minLength="6"
-                            onChange = {this.onPasswordInput}
-                        />
-                    </div>
-                    <div className={classes.input}>
-                        <span>Confirm Password</span>
-                        <input
-                            required
-                            placeholder="confirm password"
-                            type="password"
-                            onChange = {this.onPasswordConfirm}
-                        />
-                    </div>
-                    <span className={classes.policy}>
-                        By clicking signup, you're onboard with our
-                        <span
-                            style={{
-                                color: '#0073b1',
-                                fontWeight: 'bold',
-                                fontFamily: 'Ubuntu'
-                            }}
+            <div>
+                <div
+                    className="ui middle aligned center aligned grid"
+                    style={{ transform: 'translateY(50%)' }}
+                >
+                    <div className="column">
+                        <h2 className="ui teal image header">
+                            <div className="content">Sign-up</div>
+                        </h2>
+                        <form
+                            className="ui large form"
+                            onSubmit={this.submitHandler}
                         >
-                            {' '}
-                            privacy policy.
-                        </span>
-                    </span>
-                    <button
-                        type="submit"
-                        onSubmit={e => {
-                            e.preventDefault()
-                            this.setState({ authStart: true })
-                        }}
-                    >
-                        SIGNUP
-                    </button>
+                            <div className="ui stacked segment">
+                                <div className="field">
+                                    <div className="ui left icon input">
+                                        <i className="user icon"></i>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            placeholder="Full Name"
+                                            onChange={this.inputHandler}
+                                            required
+                                            minLength="4"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="field">
+                                    <div className="ui left icon input">
+                                        <i className="mail icon"></i>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            placeholder="E-mail Address"
+                                            onChange={this.inputHandler}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div className="field">
+                                    <div className="ui left icon input">
+                                        <i className="lock icon"></i>
+                                        <input
+                                            type="password"
+                                            name="password"
+                                            placeholder="Password"
+                                            onChange={this.inputHandler}
+                                            required
+                                            minLength="6"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="field">
+                                    <div className="ui left icon input">
+                                        <i className="lock icon"></i>
+                                        <input
+                                            type="password"
+                                            name="password_confirmation"
+                                            placeholder="Confirm Password"
+                                            onChange={this.inputHandler}
+                                            required
+                                            minLength="6"
+                                        />
+                                    </div>
+                                </div>
+                                <div>
+                                    <button className="ui fluid large teal submit button">
+                                        Sign Up
+                                    </button>
+                                    <p className="passError">
+                                        {passErrHandler}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="ui error message"></div>
+                        </form>
+                    </div>
                 </div>
-            </form>
+            </div>
         )
     }
 }

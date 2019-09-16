@@ -1,0 +1,12 @@
+.grid {
+    height: 10%;
+}
+
+.column {
+    max-width: 450px;
+}
+
+.passError{
+    margin-top: 1rem;
+    color: red;
+}
