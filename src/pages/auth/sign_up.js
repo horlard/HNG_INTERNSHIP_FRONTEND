@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import classes from './signup.module.css'
+import './sign.css'
 
 export default class Signup extends Component {
     state = {
@@ -25,70 +25,79 @@ export default class Signup extends Component {
     onPasswordConfirm = e => {
         this.setState({ confirmPass: e.target.value })
     }
+    confirmPassword=()=> {
+            return (
+                <div>
+                    Password and Confirm-password field has to be the same
+                </div>
+            )
+
+        
+    }
     
     render() {
+        console.log(this.state)
         return (
-            <form className={classes.form}>
-                <div className={classes.inputcontainer}>
-                    <div className={classes.input}>
-                        <span>First Name</span>
-                        <input required placeholder="John" minLength="4" onChange = {this.onFirstName}/>
-                    </div>
-                    <div className={classes.input}>
-                        <span>Last Name</span>
-                        <input required placeholder="Doe" minLength="4" onChange = {this.onLastName} />
-                    </div>
-                    <div className={classes.input}>
-                        <span>Email</span>
-                        <input
-                            required
-                            placeholder="Aa@domain.com"
-                            type="email"
-                        onChange = {this.onEmailInput}/>
-                    </div>
-                    <div className={classes.input}>
-                        <span>Password</span>
-                        <input
-                            required
-                            placeholder="password"
-                            type="password"
-                            minLength="6"
-                            onChange = {this.onPasswordInput}
-                        />
-                    </div>
-                    <div className={classes.input}>
-                        <span>Confirm Password</span>
-                        <input
-                            required
-                            placeholder="confirm password"
-                            type="password"
-                            onChange = {this.onPasswordConfirm}
-                        />
-                    </div>
-                    <span className={classes.policy}>
-                        By clicking signup, you're onboard with our
-                        <span
-                            style={{
-                                color: '#0073b1',
-                                fontWeight: 'bold',
-                                fontFamily: 'Ubuntu'
-                            }}
-                        >
-                            {' '}
-                            privacy policy.
-                        </span>
-                    </span>
-                    <button
-                        type="submit"
-                        onSubmit={e => {
-                            e.preventDefault()
-                            this.setState({ authStart: true })
-                        }}
-                    >
-                        SIGNUP
-                    </button>
-                </div>
-            </form>
+
+
+
+            <div>
+                <div className="ui middle aligned center aligned grid" style={{transform:'translateY(50%)'}}>
+  <div className="column">
+    <h2 className="ui teal image header">
+      <div className="content">
+        Log-in to your account
+      </div>
+    </h2>
+    <form className="ui large form">
+      <div className="ui stacked segment">
+        <div className="field">
+          <div className="ui left icon input">
+            <i className="user icon"></i>
+            <input type="text" name="text" placeholder="First Name" onChange={this.onFirstName} required/>
+          </div>
+        </div>
+        <div className="field">
+          <div className="ui left icon input">
+            <i className="user icon"></i>
+            <input type="text" name="text" placeholder="Last Name" onChange={this.onLastName} required/>
+          </div>
+        </div>
+        <div className="field">
+          <div className="ui left icon input">
+            <i className="mail icon"></i>
+            <input type="email" name="text" placeholder="E-mail Address" onChange={this.onEmailInput} required/>
+          </div>
+        </div>
+        <div className="field">
+          <div className="ui left icon input">
+            <i className="lock icon"></i>
+            <input type="password" name="password" placeholder="Password" onChange={this.onPasswordInput} required/>
+          </div>
+        </div>
+        <div className="field">
+          <div className="ui left icon input">
+            <i className="lock icon"></i>
+            <input type="password" name="password" placeholder="Confirm Password" onChange={this.onPasswordConfirm} required/>
+          </div>
+        </div>
+        <div className="ui fluid large teal submit button">Login</div>
+      </div>
+
+      <div className="ui error message"></div>
+
+    </form>
+
+    <div className="ui message">
+      New to us? <a href="#">Sign Up</a>
+    </div>
+  </div>
+</div>
+
+
+
+            </div>
+            
         )
     }
 }
