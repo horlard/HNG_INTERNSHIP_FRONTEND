@@ -6,16 +6,10 @@ export default class Signup extends Component {
     state = {
         authStart: false,
 
-      FirstName: '',
-      LastName: '',
-      email: '',
-      password: '',
-      confirmPass: '',
-      FirstnameErr:'',
-      LastnameErr:'',
-      emailErr:'',
-      PasswordnameErr:'',
-      confirmpassErr:'',
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
         password_confirmation: '',
         passErr: null
     }
@@ -24,15 +18,6 @@ export default class Signup extends Component {
         this.setState({
             [e.target.name]: e.target.value
         })
-    }
-    
-    onFormSubmit =(e)=> {
-        e.preventDefault()
-        if(!this.state.FirstName || !this.state.LastName || !this.state.email || !this.state.email || !this.state.password || !this.state.confirmPass) {
-            return this.setState({FirstnameErr:'Please fill in the required fields '})
-        }
-        
-        return console.log('hello')
     }
 
     submitHandler = e => {
@@ -48,7 +33,6 @@ export default class Signup extends Component {
         })
     }
     render() {
-
         let passErrHandler = ''
         if (this.state.passErr) {
             passErrHandler = 'Passwords do not match!'
@@ -57,7 +41,7 @@ export default class Signup extends Component {
             <div>
                 <div
                     className="ui middle aligned center aligned grid"
-                    style={{ transform: 'translateY(40%)' }}
+                    style={{ transform: 'translateY(30%)' }}
                 >
                     <div className="column">
                         <h2 className="ui teal image header">
@@ -73,8 +57,21 @@ export default class Signup extends Component {
                                         <i className="user icon"></i>
                                         <input
                                             type="text"
-                                            name="name"
-                                            placeholder="Full Name"
+                                            name="firstName"
+                                            placeholder="First Name"
+                                            onChange={this.inputHandler}
+                                            required
+                                            minLength="4"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="field">
+                                    <div className="ui left icon input">
+                                        <i className="user icon"></i>
+                                        <input
+                                            type="text"
+                                            name="lastName"
+                                            placeholder="Last Name"
                                             onChange={this.inputHandler}
                                             required
                                             minLength="4"
@@ -121,16 +118,18 @@ export default class Signup extends Component {
                                     </div>
                                 </div>
                                 <div>
-                                    <button className="ui fluid large teal submit button" onClick={this.onFormSubmit}>
+                                    <button className="ui fluid large teal submit button">
                                         Sign Up
                                     </button>
                                 </div>
                             </div>
-                    <div className="ui error message">{this.state.FirstnameErr}</div>
 
-                            <div className="ui error message">{passErrHandler}</div>
+                            <div className="ui error message">
+                                {passErrHandler}
+                            </div>
                             <div className="ui message">
-                                Already have an account? <Link to="/Login">Login</Link>
+                                Already have an account?{' '}
+                                <Link to="/Login">Login</Link>
                             </div>
                         </form>
                     </div>

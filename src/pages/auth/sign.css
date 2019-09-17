@@ -10,7 +10,9 @@
     .contain {
         transform: translateY(150%)
     }
-.passError{
+}
+
+.passError {
     margin-top: 1rem;
     color: red;
 }
