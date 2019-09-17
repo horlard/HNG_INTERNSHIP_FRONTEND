@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 export default class Signup extends Component {
     state = {
         authStart: false,
-        name: '',
+        firstName: '',
+        lastName: '',
         email: '',
         password: '',
         password_confirmation: '',
@@ -55,8 +56,21 @@ export default class Signup extends Component {
                                         <i className="user icon"></i>
                                         <input
                                             type="text"
-                                            name="name"
-                                            placeholder="Full Name"
+                                            name="firstName"
+                                            placeholder="First Name"
+                                            onChange={this.inputHandler}
+                                            required
+                                            minLength="4"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="field">
+                                    <div className="ui left icon input">
+                                        <i className="user icon"></i>
+                                        <input
+                                            type="text"
+                                            name="lastName"
+                                            placeholder="Last Name"
                                             onChange={this.inputHandler}
                                             required
                                             minLength="4"
