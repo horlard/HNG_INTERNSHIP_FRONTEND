@@ -40,7 +40,7 @@ export default class Signup extends Component {
             <div>
                 <div
                     className="ui middle aligned center aligned grid"
-                    style={{ transform: 'translateY(40%)' }}
+                    style={{ transform: 'translateY(30%)' }}
                 >
                     <div className="column">
                         <h2 className="ui teal image header">
@@ -127,7 +127,8 @@ export default class Signup extends Component {
                             </div>
 
                             <div className="ui message">
-                                Already have an account? <Link to="/Login">Login</Link>
+                                Already have an account?{' '}
+                                <Link to="/Login">Login</Link>
                             </div>
                         </form>
                     </div>
