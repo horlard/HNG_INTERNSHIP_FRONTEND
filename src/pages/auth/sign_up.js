@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import './sign.css'
+import { Link } from 'react-router-dom'
 
 export default class Signup extends Component {
     state = {
         authStart: false,
+
       FirstName: '',
       LastName: '',
       email: '',
@@ -13,22 +15,15 @@ export default class Signup extends Component {
       LastnameErr:'',
       emailErr:'',
       PasswordnameErr:'',
-      confirmpassErr:''
+      confirmpassErr:'',
+        password_confirmation: '',
+        passErr: null
     }
-    onEmailInput = e => {
-        this.setState({ email: e.target.value })
-    }
-    onPasswordInput = e => {
-        this.setState({ password: e.target.value })
-    }
-    onFirstName = e => {
-        this.setState({ FirstName: e.target.value })
-    }
-    onLastName = e => {
-        this.setState({ LastName: e.target.value })
-    }
-    onPasswordConfirm = e => {
-        this.setState({ confirmPass: e.target.value })
+
+    inputHandler = e => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
     
     onFormSubmit =(e)=> {
@@ -39,62 +34,108 @@ export default class Signup extends Component {
         
         return console.log('hello')
     }
-    
+
+    submitHandler = e => {
+        e.preventDefault()
+        const { password, password_confirmation } = this.state
+        if (password !== password_confirmation) {
+            return this.setState({
+                passErr: true
+            })
+        }
+        this.setState({
+            passErr: false
+        })
+    }
     render() {
+
+        let passErrHandler = ''
+        if (this.state.passErr) {
+            passErrHandler = 'Passwords do not match!'
+        }
         return (
             <div>
-                <div className="ui middle aligned center aligned grid" style={{transform:'translateY(50%)'}}>
-  <div className="column">
-    <h2 className="ui teal image header">
-      <div className="content">
-        Sign-up
-      </div>
-    </h2>
-    <form className="ui large form error">
-      <div className="ui stacked segment">
-        <div className="field">
-          <div className="ui left icon input">
-            <i className="user icon"></i>
-            <input type="text" name="text" placeholder="First Name" onChange={this.onFirstName} />
-          </div>
-        </div>
-        <div className="field">
-          <div className="ui left icon input">
-            <i className="user icon"></i>
-            <input type="text" name="text" placeholder="Last Name" onChange={this.onLastName} />
-          </div>
-        </div>
-        <div className="field">
-          <div className="ui left icon input">
-            <i className="mail icon"></i>
-            <input type="email" name="text" placeholder="E-mail Address" onChange={this.onEmailInput} />
-          </div>
-        </div>
-        <div className="field">
-          <div className="ui left icon input">
-            <i className="lock icon"></i>
-            <input type="password" name="password" placeholder="Password" onChange={this.onPasswordInput} />
-          </div>
-        </div>
-        <div className="field">
-          <div className="ui left icon input">
-            <i className="lock icon"></i>
-            <input type="password" name="password" placeholder="Confirm Password" onChange={this.onPasswordConfirm} />
-          </div>
-        </div>
-        <div className="ui fluid large teal submit button" onClick={this.onFormSubmit}>Sign Up</div>
-      </div>
-      <div className="ui error message">{this.state.FirstnameErr}</div>
+                <div
+                    className="ui middle aligned center aligned grid"
+                    style={{ transform: 'translateY(40%)' }}
+                >
+                    <div className="column">
+                        <h2 className="ui teal image header">
+                            <div className="content">Sign-up</div>
+                        </h2>
+                        <form
+                            className="ui large form error"
+                            onSubmit={this.submitHandler}
+                        >
+                            <div className="ui stacked segment">
+                                <div className="field">
+                                    <div className="ui left icon input">
+                                        <i className="user icon"></i>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            placeholder="Full Name"
+                                            onChange={this.inputHandler}
+                                            required
+                                            minLength="4"
+                                        />
+                                    </div>
+                                </div>
 
-      
+                                <div className="field">
+                                    <div className="ui left icon input">
+                                        <i className="mail icon"></i>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            placeholder="E-mail Address"
+                                            onChange={this.inputHandler}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div className="field">
+                                    <div className="ui left icon input">
+                                        <i className="lock icon"></i>
+                                        <input
+                                            type="password"
+                                            name="password"
+                                            placeholder="Password"
+                                            onChange={this.inputHandler}
+                                            required
+                                            minLength="6"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="field">
+                                    <div className="ui left icon input">
+                                        <i className="lock icon"></i>
+                                        <input
+                                            type="password"
+                                            name="password_confirmation"
+                                            placeholder="Confirm Password"
+                                            onChange={this.inputHandler}
+                                            required
+                                            minLength="6"
+                                        />
+                                    </div>
+                                </div>
+                                <div>
+                                    <button className="ui fluid large teal submit button" onClick={this.onFormSubmit}>
+                                        Sign Up
+                                    </button>
+                                </div>
+                            </div>
+                    <div className="ui error message">{this.state.FirstnameErr}</div>
 
-    </form>
-
-    
-  </div>
-</div>
-</div>
-            
+                            <div className="ui error message">{passErrHandler}</div>
+                            <div className="ui message">
+                                Already have an account? <Link to="/Login">Login</Link>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         )
     }
 }

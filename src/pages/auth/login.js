@@ -27,6 +27,7 @@ onFormSubmit =e=> {
 }
 
 
+    
  render() {
      
   return (
@@ -53,14 +54,24 @@ onFormSubmit =e=> {
           </div>
         </div>
         
-        <div className="ui fluid large teal submit button">Login</div>
+    <div className="">
+                                    {' '}
+                                    <button
+                                        type="submit"
+                                        className="ui fluid large teal submit button"
+                                    >
+                                        Login
+                                    </button>
+                                </div>
       </div>
 
       <div className="ui error message" type='submit' onClick={this.onFormSubmit}>{this.state.Err}</div>
 
     </form>
     <div className="ui message">
-      New to us? <Link to='/signup'>Sign Up</Link>
+    <p style={{ fontSize: '1.1rem' }}>
+    New to us? <Link to="/signup">Sign Up</Link>{' '}
+        </p>
     </div>
 
     
@@ -70,6 +81,6 @@ onFormSubmit =e=> {
    </div>
   )
  }
-}
 
-export default withRouter(Login);
+
+export default withRouter(Login)

@@ -1,6 +1,7 @@
 .grid {
     height: 10%;
 }
+
 .column {
     max-width: 450px;
 }
@@ -9,4 +10,7 @@
     .contain {
         transform: translateY(150%)
     }
+.passError{
+    margin-top: 1rem;
+    color: red;
 }
