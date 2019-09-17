@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import './sign.css'
+import axios from 'axios'
 
 class Login extends Component {
     state = {
@@ -12,7 +13,22 @@ class Login extends Component {
         password: '',
         Err: ''
     }
-
+    componentDidMount() {
+        const url =
+            'https://cors-anywhere.herokuapp.com/https://intense-lowlands-41245.herokuapp.com/doc.php'
+        axios
+            .get(url)
+            .then(res => {
+                console.log(res.data)
+                // return axios.get(
+                //     'https://cors-anywhere.herokuapp.com/https://intense-lowlands-41245.herokuapp.com/index.php/register'
+                // )
+            })
+            .then(res => {
+                console.log('Response', res)
+            })
+    }
+    //"index.php/register"
     onEmailInput = e => {
         this.setState({ email: e.target.value })
     }
