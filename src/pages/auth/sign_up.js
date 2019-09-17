@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './sign.css'
+import { Link } from 'react-router-dom'
 
 export default class Signup extends Component {
     state = {
@@ -38,7 +39,7 @@ export default class Signup extends Component {
             <div>
                 <div
                     className="ui middle aligned center aligned grid"
-                    style={{ transform: 'translateY(50%)' }}
+                    style={{ transform: 'translateY(40%)' }}
                 >
                     <div className="column">
                         <h2 className="ui teal image header">
@@ -111,7 +112,9 @@ export default class Signup extends Component {
                                 </div>
                             </div>
 
-                            <div className="ui error message"></div>
+                            <div className="ui message">
+                                Already have an account? <Link to="/Login">Login</Link>
+                            </div>
                         </form>
                     </div>
                 </div>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter,Link } from 'react-router-dom';
-import classes from './login.module.css';
 
 class Login extends Component {
  state = {
@@ -24,7 +23,7 @@ onPasswordInput=e=> {
 
  render() {
   return (
-    <div style={{transform:'translateY(100%)'}} className='contain '>
+    <div style={{transform:'translateY(70%)'}} className='contain '>
     <div className="ui middle aligned center aligned grid" >
 <div className="column">
  <h2 className="ui teal image header">
@@ -43,7 +42,7 @@ onPasswordInput=e=> {
      <div className="field">
        <div className="ui left icon input">
          <i className="lock icon"></i>
-         <input type="password" name="password" placeholder="Password" onChange={this.onPasswordInput} required/>
+         <input type="password" name="password" placeholder="Password" onChange={this.onPasswordInput}  minLength = '6' required/>
        </div>
      </div>
      
@@ -53,8 +52,8 @@ onPasswordInput=e=> {
    <div className="ui error message" type='submit' onClick={this.onFormSubmit}>{this.state.Err}</div>
 
  </form>
- <div className="ui message">
-   New to us? <Link to='/signup'>Sign Up</Link>
+ <div className="ui message enhance">
+   <p style = {{fontSize:'1.1rem'}}>New to us? <Link to='/signup'>Sign Up</Link> </p>
  </div>
 
  
