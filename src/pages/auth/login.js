@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
+import './sign.css'
 
 class Login extends Component {
     state = {
@@ -8,7 +9,8 @@ class Login extends Component {
         verificationSuccess: false,
         loading: false,
         email: '',
-        password: ''
+        password: '',
+        Err: ''
     }
 
     onEmailInput = e => {
@@ -17,10 +19,13 @@ class Login extends Component {
     onPasswordInput = e => {
         this.setState({ password: e.target.value })
     }
+    onFormSubmit = e => {
+        console.log('hello')
+    }
 
     render() {
         return (
-            <div style={{ transform: 'translateY(70%)' }} className="contain ">
+            <div style={{ transform: 'translateY(100%)' }} className="contain ">
                 <div className="ui middle aligned center aligned grid">
                     <div className="column">
                         <h2 className="ui teal image header">
@@ -48,7 +53,6 @@ class Login extends Component {
                                             name="password"
                                             placeholder="Password"
                                             onChange={this.onPasswordInput}
-                                            minLength="6"
                                             required
                                         />
                                     </div>
@@ -73,7 +77,7 @@ class Login extends Component {
                                 {this.state.Err}
                             </div>
                         </form>
-                        <div className="ui message enhance">
+                        <div className="ui message">
                             <p style={{ fontSize: '1.1rem' }}>
                                 New to us? <Link to="/signup">Sign Up</Link>{' '}
                             </p>

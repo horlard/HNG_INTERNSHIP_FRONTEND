@@ -6,7 +6,13 @@
     max-width: 450px;
 }
 
-.passError{
+@media screen and (max-width:775px) {
+    .contain {
+        transform: translateY(150%)
+    }
+}
+
+.passError {
     margin-top: 1rem;
     color: red;
 }

@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import App from './App';
+import History from './components/history';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 
 const app = (
- <BrowserRouter basename="/HNG_INTERNSHIP_FRONTEND">
+ <Router history={History}>
   <App />
- </BrowserRouter>
+ </Router>
 );
 
 ReactDOM.render(app, document.getElementById('root'));

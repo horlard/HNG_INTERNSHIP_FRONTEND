@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 export default class Signup extends Component {
     state = {
         authStart: false,
+
         firstName: '',
         lastName: '',
         email: '',
@@ -123,7 +124,9 @@ export default class Signup extends Component {
                                 </div>
                             </div>
 
-                            <div className="ui error message">{passErrHandler}</div>
+                            <div className="ui error message">
+                                {passErrHandler}
+                            </div>
                             <div className="ui message">
                                 Already have an account?{' '}
                                 <Link to="/Login">Login</Link>
