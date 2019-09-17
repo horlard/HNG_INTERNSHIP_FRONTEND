@@ -5,9 +5,17 @@ import { Link } from 'react-router-dom'
 export default class Signup extends Component {
     state = {
         authStart: false,
-        name: '',
-        email: '',
-        password: '',
+
+      FirstName: '',
+      LastName: '',
+      email: '',
+      password: '',
+      confirmPass: '',
+      FirstnameErr:'',
+      LastnameErr:'',
+      emailErr:'',
+      PasswordnameErr:'',
+      confirmpassErr:'',
         password_confirmation: '',
         passErr: null
     }
@@ -16,6 +24,15 @@ export default class Signup extends Component {
         this.setState({
             [e.target.name]: e.target.value
         })
+    }
+    
+    onFormSubmit =(e)=> {
+        e.preventDefault()
+        if(!this.state.FirstName || !this.state.LastName || !this.state.email || !this.state.email || !this.state.password || !this.state.confirmPass) {
+            return this.setState({FirstnameErr:'Please fill in the required fields '})
+        }
+        
+        return console.log('hello')
     }
 
     submitHandler = e => {
@@ -31,6 +48,7 @@ export default class Signup extends Component {
         })
     }
     render() {
+
         let passErrHandler = ''
         if (this.state.passErr) {
             passErrHandler = 'Passwords do not match!'
@@ -103,11 +121,12 @@ export default class Signup extends Component {
                                     </div>
                                 </div>
                                 <div>
-                                    <button className="ui fluid large teal submit button">
+                                    <button className="ui fluid large teal submit button" onClick={this.onFormSubmit}>
                                         Sign Up
                                     </button>
                                 </div>
                             </div>
+                    <div className="ui error message">{this.state.FirstnameErr}</div>
 
                             <div className="ui error message">{passErrHandler}</div>
                             <div className="ui message">
