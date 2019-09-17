@@ -15,17 +15,17 @@ class Login extends Component {
     }
     componentDidMount() {
         const url =
-            'https://cors-anywhere.herokuapp.com/https://intense-lowlands-41245.herokuapp.com/doc.php'
+            'https://cors-anywhere.herokuapp.com/https://intense-lowlands-41245.herokuapp.com/index.php/logout'
         axios
             .get(url)
             .then(res => {
-                console.log(res.data)
+                console.log(res.data, 'success')
                 // return axios.get(
                 //     'https://cors-anywhere.herokuapp.com/https://intense-lowlands-41245.herokuapp.com/index.php/register'
                 // )
             })
             .then(res => {
-                console.log('Response', res)
+                console.log(res, 'failed')
             })
     }
     //"index.php/register"
