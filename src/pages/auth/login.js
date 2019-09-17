@@ -25,7 +25,7 @@ class Login extends Component {
 
     render() {
         return (
-            <div style={{ transform: 'translateY(100%)' }} className="contain ">
+            <div style={{ transform: 'translateY(80%)' }} className="contain ">
                 <div className="ui middle aligned center aligned grid">
                     <div className="column">
                         <h2 className="ui teal image header">
