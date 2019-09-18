@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './sign.css'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
 export default class Signup extends Component {
     state = {
         authStart: false,
@@ -21,7 +20,6 @@ export default class Signup extends Component {
 
     submitHandler = e => {
         e.preventDefault()
-        console.log(this.state)
         const { password, password_confirmation } = this.state
         if (password !== password_confirmation) {
             return this.setState({
@@ -40,12 +38,29 @@ export default class Signup extends Component {
 
         // const url =
         //   'https://cors-anywhere.herokuapp.com/https://intense-lowlands-41245.herokuapp.com/doc.php'
+        function formEncode(obj) {
+            var str = []
+            for (var p in obj)
+                str.push(
+                    encodeURIComponent(p) + '=' + encodeURIComponent(obj[p])
+                )
+            return str.join('&')
+        }
         const url =
             'https://cors-anywhere.herokuapp.com/https://intense-lowlands-41245.herokuapp.com/index.php/register'
-        axios
-            .post(url, data)
-            .then(res => {
-                console.log(res.data, 'success')
+        fetch(url, {
+            method: 'POST',
+            headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+            body: formEncode(data)
+        })
+            .then(res => res.json())
+            .then(
+                response =>
+                    console.log(
+                        'Success from fetch:',
+                        JSON.stringify(response)
+                    ),
+                console.log(this.state),
                 this.setState({
                     firstName: '',
                     lastName: '',
@@ -53,10 +68,17 @@ export default class Signup extends Component {
                     password: '',
                     password_confirmation: ''
                 })
-            })
-            .catch(err => {
-                console.log(err, 'failed')
-            })
+            )
+            .catch(
+                error => console.error('Error from fetch:', error),
+                this.setState({
+                    firstName: '',
+                    lastName: '',
+                    email: '',
+                    password: '',
+                    password_confirmation: ''
+                })
+            )
     }
     render() {
         let passErrHandler = ''

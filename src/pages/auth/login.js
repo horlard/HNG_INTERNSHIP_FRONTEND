@@ -13,31 +13,53 @@ class Login extends Component {
         password: '',
         Err: ''
     }
-    componentDidMount() {
-        const url =
-            'https://cors-anywhere.herokuapp.com/https://intense-lowlands-41245.herokuapp.com/index.php/logout'
-        axios
-            .get(url)
+    onLoginSubmit = e => {
+        e.preventDefault()
+        var url =
+            'https://cors-anywhere.herokuapp.com/https://intense-lowlands-41245.herokuapp.com/index.php/login'
+
+        const data = {
+            password: this.state.password,
+            email: this.state.email
+        }
+        console.log(data)
+
+        function formEncode(obj) {
+            var str = []
+            for (var p in obj)
+                str.push(
+                    encodeURIComponent(p) + '=' + encodeURIComponent(obj[p])
+                )
+            return str.join('&')
+        }
+        axios.get(url, data)
             .then(res => {
-                console.log(res.data, 'success')
-                // return axios.get(
-                //     'https://cors-anywhere.herokuapp.com/https://intense-lowlands-41245.herokuapp.com/index.php/register'
-                // )
+                console.log(res, 'success from axios')
             })
-            .then(res => {
-                console.log(res, 'failed')
+            .catch(err => {
+                console.log(err, 'error from axios')
             })
+        // fetch(url, {
+        //     method: 'POST',
+        //     headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+        //     body: formEncode(data)
+        // })
+        //     .then(res => res.json())
+        //     .then(response =>
+        //         console.log('Success from fetch:', JSON.stringify(response))
+        //     )
+        //     .catch(error => console.error('Error from fetch:', error))
+
+      
+     
     }
-    //"index.php/register"
     onEmailInput = e => {
         this.setState({ email: e.target.value })
     }
     onPasswordInput = e => {
         this.setState({ password: e.target.value })
     }
-    onFormSubmit = e => {
-        console.log('hello')
-    }
+   
 
     render() {
         return (
@@ -47,7 +69,7 @@ class Login extends Component {
                         <h2 className="ui teal image header">
                             <div className="content">Login to your Account</div>
                         </h2>
-                        <form className="ui large form error">
+                        <form className="ui large form error" onSubmit = {this.onLoginSubmit}>
                             <div className="ui stacked segment">
                                 <div className="field">
                                     <div className="ui left icon input">
@@ -55,6 +77,7 @@ class Login extends Component {
                                         <input
                                             type="email"
                                             name="text"
+                                            value ={this.state.email}
                                             placeholder="E-mail Address"
                                             onChange={this.onEmailInput}
                                             required
@@ -67,6 +90,7 @@ class Login extends Component {
                                         <input
                                             type="password"
                                             name="password"
+                                            value = {this.state.password}
                                             placeholder="Password"
                                             onChange={this.onPasswordInput}
                                             required
@@ -85,13 +109,6 @@ class Login extends Component {
                                 </div>
                             </div>
 
-                            <div
-                                className="ui error message"
-                                type="submit"
-                                onClick={this.onFormSubmit}
-                            >
-                                {this.state.Err}
-                            </div>
                         </form>
                         <div className="ui message">
                             <p style={{ fontSize: '1.1rem' }}>
