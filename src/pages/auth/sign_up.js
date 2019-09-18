@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import qs from 'qs';
+
+import BackendApi from './backendApi';
 import './sign.css'
 import { Link } from 'react-router-dom'
 
@@ -11,7 +14,8 @@ export default class Signup extends Component {
         email: '',
         password: '',
         password_confirmation: '',
-        passErr: null
+        isLoading: false,
+        passErr: false
     }
 
     inputHandler = e => {
@@ -21,18 +25,30 @@ export default class Signup extends Component {
     }
 
     submitHandler = e => {
-        e.preventDefault()
+        e.preventDefault();
         const { password, password_confirmation } = this.state
         if (password !== password_confirmation) {
             return this.setState({
                 passErr: true
             })
         }
-        this.setState({
-            passErr: false
+        this.setState({isLoading: true});
+
+        BackendApi.post('/index.php/register', qs.stringify({
+            firstname:this.state.firstName,
+            lastname:this.state.lastName,
+            email:this.state.email,
+            password:this.state.password_confirmation
+        }) ).then(res=> {
+            console.log(res);
+            this.setState({isLoading: false});
+        }).catch(error => {
+            this.setState({isLoading: false});
         })
+        
     }
     render() {
+        const {isLoading} = this.state;
         let passErrHandler = ''
         if (this.state.passErr) {
             passErrHandler = 'Passwords do not match!'
@@ -118,8 +134,8 @@ export default class Signup extends Component {
                                     </div>
                                 </div>
                                 <div>
-                                    <button className="ui fluid large teal submit button">
-                                        Sign Up
+                                    <button className="ui fluid large teal submit button" disabled={isLoading}>
+                                       {isLoading ? "Submitting..." : "Sign Up"}
                                     </button>
                                 </div>
                             </div>
