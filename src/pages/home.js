@@ -1,7 +1,9 @@
 import React from 'react'
 
 const home = () => (
-   <div>Home</div>
+    <div style={{ textAlign: 'center' }}>
+        <h3>Welcome to team nameless</h3>
+    </div>
 )
 
-export default home;
+export default home
